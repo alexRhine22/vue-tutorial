@@ -1,3 +1,4 @@
+// PRODUCT COMPONENT OF PAGE
 Vue.component('product', {
   props: {
     premium: {
@@ -52,10 +53,10 @@ Vue.component('product', {
   `,
   data() {
     return {
-      product: 'Socks', // similar to innerHTML
-      brand: 'Vue Mastery',
-      selectedVariant: 0,
-      details: ['80% cotton', '20% polyester', 'Gender-neutral'],
+      product: 'Socks', // product name
+      brand: 'Vue Mastery', // product brand
+      selectedVariant: 0, 
+      details: ['80% cotton', '20% polyester', 'Gender-neutral'], // product description array
       variants: [
         {
           variantId: 2234,
@@ -70,7 +71,7 @@ Vue.component('product', {
           variantQuantity: 0
         }
       ],
-      reviews: []
+      reviews: [] // array of product reviews
     }
   },
   methods: {
@@ -85,9 +86,11 @@ Vue.component('product', {
     }
   },
   computed: {
+    // title = brand + name of product
     title() {
       return this.brand + ' ' + this.product
     },
+    // image = current product variant image 
     image() {
       return this.variants[this.selectedVariant].variantImage
     },
@@ -96,13 +99,14 @@ Vue.component('product', {
     },
     shipping() {
       if (this.premium) {
-        return 'Free'
+        return 'Free' // if the user is a premium user.  shipping is free
       }
-      return '$2.99'
+      return '$2.99' // non premium user shipping price
     }
   }
 });
 
+// PRODUCT REVIEW COMPONENT OF PAGE
 Vue.component('product-review', {
   template: 
   `
@@ -136,12 +140,13 @@ Vue.component('product-review', {
   `, 
   data() {
     return {
-      name: null,
-      review: null,
-      rating: null
+      name: null, // name of product review
+      review: null, // product review description
+      rating: null // product review rating
     }
   },
   methods: {
+    // on submit of product review
     onSubmit() {
       let productReview = {
         name: this.name,
@@ -161,9 +166,10 @@ var app = new Vue({
   el: '#app',
   data: {
     premium: true, 
-    cart: []
+    cart: [] 
   },
   methods: {
+    // when add to cart button is clicked add product variant id to cart
     updateCart(id) {
       this.cart.push(id)
     }
